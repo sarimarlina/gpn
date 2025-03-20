@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JPK Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { background-color: #f4f6f9; }
+        .sidebar { width: 250px; background: #343a40; color: white; height: 100vh; position: fixed; padding: 20px; }
+        .content { margin-left: 260px; padding: 20px; }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h4>Selamat Datang JPK</h4>
+        <ul class="nav flex-column">
+            <li class="nav-item"><a href="jpk_dashboard.html" class="nav-link text-white">Biodata JPK</a></li>
+            <li class="nav-item"><a href="grafik_absensi_jpk.html" class="nav-link text-white">Grafik Absensi</a></li>
+            <li class="nav-item"><a href="data_hasil.html" class="nav-link text-white">Data Hasil</a></li>
+            <li class="nav-item"><a href="hasil_unit.html" class="nav-link text-white">Hasil Unit</a></li>
+            <li class="nav-item"><a href="worker.html" class="nav-link text-white">Inputan Worker</a></li>
+            <li class="nav-item"><a href="login.html" class="nav-link text-white">Keluar</a></li>
+            
+        </ul>
+    </div>
+    <div class="content">
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Data Unit</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil PTI Worker</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Hasil PTI Worker</h2>
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Badge</th>
+                    <th>Tanggal</th>
+                    <th>Alamat Login</th>
+                    <th>PTI</th>
+                    <th>DCU</th>
+                    <th>Kerusakan Unit</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody id="ptiTableBody">
+                <!-- Data PTI yang sudah terisi -->
+                <tr>
+                    <td>John Doe</td>
+                    <td>12345</td>
+                    <td>2025-03-20</td>
+                    <td>Padang</td>
+                    <td><img src="pti_sample.jpg" width="50"></td>
+                    <td><img src="dcu_sample.jpg" width="50"></td>
+                    <td><img src="kerusakan_sample.jpg" width="50"></td>
+                    <td>Aman - Tidak ada masalah</td>
+                </tr>
+                <tr>
+                    <td>Jane Smith</td>
+                    <td>67890</td>
+                    <td>2025-03-21</td>
+                    <td>Pekanbaru</td>
+                    <td><img src="pti_sample2.jpg" width="50"></td>
+                    <td><img src="dcu_sample2.jpg" width="50"></td>
+                    <td><img src="kerusakan_sample2.jpg" width="50"></td>
+                    <td>Tidak Aman - Ban bocor</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

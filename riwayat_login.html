@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worker</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { 
+            background-color: #f4f6f9; 
+        }
+        .sidebar { 
+            width: 250px; 
+            background: #343a40; 
+            color: white; 
+            height: 100vh; 
+            position: fixed; 
+            padding: 20px; 
+        }
+        .content { 
+            margin-left: 260px; 
+            padding: 20px; 
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h4>Selamat Datang Admin</h4>
+        <ul class="nav flex-column">
+            <li class="nav-item"><a href="admin_dashboard.html" class="nav-link text-white">Grafik Absensi</a></li>
+            <li class="nav-item"><a href="akun_worker.html" class="nav-link text-white">Tambah Akun</a></li>
+            <li class="nav-item"><a href="absensi_worker.html" class="nav-link text-white">Absensi Worker</a></li>
+            <li class="nav-item"><a href="riwayat_login.html" class="nav-link text-white">Riwayat Login</a></li>
+            <li class="nav-item"><a href="input_data.html" class="nav-link text-white">Input Data</a></li>
+            <li class="nav-item"><a href="input_unit.html" class="nav-link text-white">Input Unit</a></li>
+            <li class="nav-item"><a href="login.html" class="nav-link text-white">Keluar</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <h2>Riwayat Login Worker</h2>
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Badge</th>
+                    <th>Tanggal</th>
+                    <th>Waktu</th>
+                    <th>Alamat Login</th>
+                </tr>
+            </thead>
+            <tbody id="loginHistoryTable">
+                <!-- Data login akan dimasukkan di sini -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            let loginData = [
+                { nama: "John Doe", badge: "12345", tanggal: "2025-03-20", waktu: "08:00", alamat: "Padang" },
+                { nama: "Jane Smith", badge: "67890", tanggal: "2025-03-21", waktu: "09:00", alamat: "Pekanbaru" }
+            ];
+            
+            function renderTable() {
+                $('#loginHistoryTable').empty();
+                loginData.forEach((data) => {
+                    let row = `<tr>
+                        <td>${data.nama}</td>
+                        <td>${data.badge}</td>
+                        <td>${data.tanggal}</td>
+                        <td>${data.waktu}</td>
+                        <td>${data.alamat}</td>
+                    </tr>`;
+                    $('#loginHistoryTable').append(row);
+                });
+            }
+
+            renderTable();
+        });
+    </script>
+</body>
+</html>
