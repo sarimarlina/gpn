@@ -29,12 +29,13 @@
     <div class="sidebar">
         <h4>Selamat Datang Admin</h4>
         <ul class="nav flex-column">
-            <li class="nav-item"><a href="admin_dashboard.html" class="nav-link text-white">Grafik Absensi</a></li>
+            <li class="nav-item"><a href="admin_dashboard.html" class="nav-link text-white">Home</a></li>
             <li class="nav-item"><a href="akun_worker.html" class="nav-link text-white">Tambah Akun</a></li>
             <li class="nav-item"><a href="absensi_worker.html" class="nav-link text-white">Absensi Worker</a></li>
             <li class="nav-item"><a href="riwayat_login.html" class="nav-link text-white">Riwayat Login</a></li>
             <li class="nav-item"><a href="input_data.html" class="nav-link text-white">Input Data</a></li>
             <li class="nav-item"><a href="input_unit.html" class="nav-link text-white">Input Unit</a></li>
+            <li class="nav-item"><a href="absen_mingguan.html" class="nav-link text-white">Rekapan Absensi</a></li>
             <li class="nav-item"><a href="index.html" class="nav-link text-white">Keluar</a></li>
         </ul>
     </div>
@@ -44,18 +45,19 @@
             <div class="mb-3">
                 <label for="jenisUnit" class="form-label">Jenis Unit</label>
                 <select class="form-control" id="jenisUnit" required>
-                    <option value="DT">DT</option>
+                    <option value="DT">Dump Truck</option>
                     <option value="Excavator">Excavator</option>
                     <option value="Motor Grader">Motor Grader</option>
+                    <option value="Motor Grader">Water Tank</option>
                 </select>
             </div>
-            <div class="mb-3" id="platNomorGroup">
+            <div class="mb-3">
                 <label for="platNomor" class="form-label">Plat Nomor</label>
-                <input type="text" class="form-control" id="platNomor">
+                <input type="text" class="form-control" id="platNomor" required>
             </div>
             <div class="mb-3">
                 <label for="kodeUnit" class="form-label">Kode Unit</label>
-                <input type="text" class="form-control" id="kodeUnit" readonly required>
+                <input type="text" class="form-control" id="kodeUnit" required>
             </div>
             <button type="submit" class="btn btn-primary">Simpan Unit</button>
         </form>
@@ -78,43 +80,16 @@
 
     <script>
         $(document).ready(function () {
-            $("#jenisUnit").change(function () {
-                let jenis = $(this).val();
-                if (jenis === "DT") {
-                    $("#platNomorGroup").show();
-                } else {
-                    $("#platNomorGroup").hide();
-                }
-                updateKodeUnit();
-            });
-
-            $("#platNomor").on("input", function () {
-                updateKodeUnit();
-            });
-
-            function updateKodeUnit() {
-                let jenis = $("#jenisUnit").val();
-                let platNomor = $("#platNomor").val().toUpperCase();
-
-                if (jenis === "DT") {
-                    $("#kodeUnit").val("DT-" + platNomor);
-                } else if (jenis === "Excavator") {
-                    $("#kodeUnit").val("EXC-" + Math.floor(Math.random() * 900 + 100));
-                } else if (jenis === "Motor Grader") {
-                    $("#kodeUnit").val("MG-" + Math.floor(Math.random() * 900 + 100));
-                }
-            }
-
             $("#unitForm").submit(function (event) {
                 event.preventDefault();
 
                 let jenisUnit = $("#jenisUnit").val();
                 let platNomor = $("#platNomor").val();
-                let kodeUnit = $("#kodeUnit").val();
+                let kodeUnit = $("#kodeUnit").val();  
 
                 let row = `<tr>
                     <td>${jenisUnit}</td>
-                    <td>${jenisUnit === "DT" ? platNomor : "-"}</td>
+                    <td>${platNomor}</td>
                     <td>${kodeUnit}</td>
                     <td>
                         <button class="btn btn-warning btn-sm edit-btn">Edit</button>
@@ -124,8 +99,6 @@
 
                 $("#unitTableBody").append(row);
                 $("#unitForm")[0].reset();
-                $("#kodeUnit").val("");
-                $("#platNomorGroup").show();
             });
 
             $("#unitTableBody").on("click", ".delete-btn", function () {
@@ -139,12 +112,7 @@
                 let kode = row.find("td:eq(2)").text();
 
                 $("#jenisUnit").val(jenis);
-                if (jenis === "DT") {
-                    $("#platNomor").val(platNomor);
-                    $("#platNomorGroup").show();
-                } else {
-                    $("#platNomorGroup").hide();
-                }
+                $("#platNomor").val(platNomor);
                 $("#kodeUnit").val(kode);
                 row.remove();
             });

@@ -28,64 +28,20 @@
         </ul>
     </div>
     <div class="content">
-        <h2>Grafik Absensi Worker</h2>
-
-        <!-- Button Main Power & Main Unit -->
-        <div class="mb-3">
-            <button class="btn btn-primary" id="btnMainPower">Main Power</button>
-            <button class="btn btn-success" id="btnMainUnit">Main Unit</button>
-        </div>
-
-        <!-- Tampilkan Hasil Main Power -->
-        <div class="card mt-3" id="mainPowerResult" style="display: none;">
-            <div class="card-header bg-primary text-white">Main Power</div>
-            <div class="card-body">
-                <ul id="listMainPower" class="list-group"></ul>
-            </div>
-        </div>
-
-        <!-- Tampilkan Hasil Main Unit -->
-        <div class="card mt-3" id="mainUnitResult" style="display: none;">
-            <div class="card-header bg-success text-white">Main Unit</div>
-            <div class="card-body">
-                <ul id="listMainUnit" class="list-group"></ul>
-            </div>
-        </div>
-
-        <!-- Grafik Absensi -->
+        <h2>Rekapan Absensi Bulanan</h2>
         <canvas id="attendanceChart" class="mt-4"></canvas>
     </div>
 
     <script>
         $(document).ready(function() {
-            // Data jumlah pekerja yang masuk dan tidak masuk selama seminggu
-            let dataWeekly = {
-                "Senin": { masuk: 10, tidakMasuk: 2 },
-                "Selasa": { masuk: 12, tidakMasuk: 3 },
-                "Rabu": { masuk: 8, tidakMasuk: 4 },
-                "Kamis": { masuk: 15, tidakMasuk: 1 },
-                "Jumat": { masuk: 9, tidakMasuk: 5 },
-                "Sabtu": { masuk: 11, tidakMasuk: 2 },
-                "Minggu": { masuk: 14, tidakMasuk: 3 }
+            // Data jumlah pekerja yang masuk dan tidak masuk selama 4 minggu
+            let dataMonthly = {
+                "Minggu 1": { masuk: 70, tidakMasuk: 10 },
+                "Minggu 2": { masuk: 65, tidakMasuk: 15 },
+                "Minggu 3": { masuk: 80, tidakMasuk: 5 },
+                "Minggu 4": { masuk: 75, tidakMasuk: 8 }
             };
 
-            // Data jumlah pekerja dan unit
-            let dataMainPower = {
-                "Driver DT": 15,
-                "Driver WT": 10,
-                "Opr. MG": 8,
-                "Opr. EXC": 12,
-                "Spotter": 7
-            };
-
-            let dataMainUnit = {
-                "Dump Truck": 20,
-                "Water Tank": 5,
-                "Motor Grader": 6,
-                "Excavator": 10
-            };
-
-            // Fungsi untuk memperbarui grafik
             function updateChart(data) {
                 let labels = Object.keys(data);
                 let masukData = labels.map(label => data[label].masuk);
@@ -125,31 +81,9 @@
                 });
             }
 
-            // Inisialisasi grafik dengan data mingguan
-            updateChart(dataWeekly);
-
-            // Klik tombol Main Power
-            $("#btnMainPower").click(function() {
-                $("#listMainPower").empty();
-                $.each(dataMainPower, function(key, value) {
-                    $("#listMainPower").append(`<li class="list-group-item">${key}: ${value}</li>`);
-                });
-                $("#mainPowerResult").show();
-                $("#mainUnitResult").hide();
-            });
-
-            // Klik tombol Main Unit
-            $("#btnMainUnit").click(function() {
-                $("#listMainUnit").empty();
-                $.each(dataMainUnit, function(key, value) {
-                    $("#listMainUnit").append(`<li class="list-group-item">${key}: ${value}</li>`);
-                });
-                $("#mainUnitResult").show();
-                $("#mainPowerResult").hide();
-            });
+            // Inisialisasi grafik dengan data bulanan
+            updateChart(dataMonthly);
         });
     </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

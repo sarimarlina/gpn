@@ -1,4 +1,3 @@
-<!-- Dashboard.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,21 +10,21 @@
         body { background-color: #f4f6f9; }
         .sidebar { width: 250px; background: #343a40; color: white; height: 100vh; position: fixed; padding: 20px; }
         .content { margin-left: 260px; padding: 20px; }
+        .chart-container { width: 100%; max-width: 600px; margin: 20px auto; }
     </style>
 </head>
 <body>
     <div class="sidebar">
         <h4>Selamat Datang JPK</h4>
         <ul class="nav flex-column">
-            <li class="nav-item"><a href="jpk_dashboard.html" class="nav-link text-white">Biodata JPK</a></li>
-            <li class="nav-item"><a href="grafik_absensi_jpk.html" class="nav-link text-white">Grafik Absensi</a></li>
+            <li class="nav-item"><a href="jpk_dashboard.html" class="nav-link text-white">Home</a></li>
             <li class="nav-item"><a href="data_hasil.html" class="nav-link text-white">Data Hasil</a></li>
             <li class="nav-item"><a href="hasil_unit.html" class="nav-link text-white">Hasil Unit</a></li>
             <li class="nav-item"><a href="worker.html" class="nav-link text-white">Inputan Worker</a></li>
             <li class="nav-item"><a href="index.html" class="nav-link text-white">Keluar</a></li>
-            
         </ul>
     </div>
+    
     <div class="content">
         <h2>Biodata JPK</h2>
         <div class="card">
@@ -46,6 +45,11 @@
                 </table>
             </div>
         </div>
+
+        
+        <div class="chart-container">
+            <canvas id="dailyChart"></canvas>
+        </div>
     </div>
 
     <script>
@@ -59,6 +63,41 @@
         document.getElementById("workerName").textContent = workerData.name;
         document.getElementById("workerPhone").textContent = workerData.phone;
         document.getElementById("workerBadge").textContent = workerData.badge;
+
+        // Data jumlah Hadir dan Tidak Hadir per hari (bisa diubah sesuai kebutuhan)
+        const hadirData = [10, 12, 8, 15, 13, 9, 14]; // Data Hadir
+        const tidakHadirData = [2, 3, 4, 2, 5, 3, 4]; // Data Tidak Hadir
+
+        const ctx = document.getElementById('dailyChart').getContext('2d');
+        const dailyChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"],
+                datasets: [
+                    {
+                        label: "Hadir",
+                        data: hadirData,
+                        backgroundColor: "#4CAF50", // Hijau untuk Hadir
+                        borderColor: "#388E3C",
+                        borderWidth: 1
+                    },
+                    {
+                        label: "Tidak Hadir",
+                        data: tidakHadirData,
+                        backgroundColor: "#F44336", // Merah untuk Tidak Hadir
+                        borderColor: "#D32F2F",
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: { stacked: true }, // Menumpuk batang
+                    y: { stacked: true, beginAtZero: true }
+                }
+            }
+        });
     </script>
 </body>
 </html>

@@ -29,12 +29,13 @@
     <div class="sidebar">
         <h4>Selamat Datang Admin</h4>
         <ul class="nav flex-column">
-            <li class="nav-item"><a href="admin_dashboard.html" class="nav-link text-white">Grafik Absensi</a></li>
+            <li class="nav-item"><a href="admin_dashboard.html" class="nav-link text-white">Home</a></li>
             <li class="nav-item"><a href="akun_worker.html" class="nav-link text-white">Tambah Akun</a></li>
             <li class="nav-item"><a href="absensi_worker.html" class="nav-link text-white">Absensi Worker</a></li>
             <li class="nav-item"><a href="riwayat_login.html" class="nav-link text-white">Riwayat Login</a></li>
             <li class="nav-item"><a href="input_data.html" class="nav-link text-white">Input Data</a></li>
             <li class="nav-item"><a href="input_unit.html" class="nav-link text-white">Input Unit</a></li>
+            <li class="nav-item"><a href="absen_mingguan.html" class="nav-link text-white">Rekapan Absensi</a></li>
             <li class="nav-item"><a href="index.html" class="nav-link text-white">Keluar</a></li>
         </ul>
     </div>
@@ -54,24 +55,26 @@
                 <input type="text" class="form-control" id="badge" required>
             </div>
             <div class="mb-3">
-                <label for="jenisWorker" class="form-label">Jenis Worker</label>
+                <label for="jenisWorker" class="form-label">Jenis </label>
                 <select class="form-control" id="jenisWorker" required>
                     <option value="Driver DT">Driver DT</option>
                     <option value="Opr.EXC">Opr.EXC</option>
                     <option value="Opr.MG">Opr.MG</option>
-                    <option value="Spotter">Spotter</option>
                     <option value="Driver.WT">Driver.WT</option>
                 </select>
             </div>
             <div class="mb-3">
-                <label for="kode" class="form-label">Kode</label>
-                <select class="form-control" id="kode" required>
-                    <option value="Driver DT">Driver DT</option>
-                    <option value="Opr.EXC">Opr.EXC</option>
-                    <option value="Opr.MG">Opr.MG</option>
-                    <option value="Spotter">Spotter</option>
-                    <option value="Driver.WT">Driver.WT</option>
+                <label for="jenisUnit" class="form-label">Jenis Unit</label>
+                <select class="form-control" id="jenisUnit" required>
+                    <option value="Dumpt truck">Dump Truck</option>
+                    <option value="Excavator">Excavator</option>
+                    <option value="Motor Grader">Motor Grader</option>
+                    <option value="water tunk">Water Tunk</option>
                 </select>
+            </div>
+            <div class="mb-3">
+                <label for="kodeUnit" class="form-label">Kode Unit</label>
+                <input type="text" class="form-control" id="kodeUnit" required>
             </div>
             <div class="mb-3">
                 <label for="sim" class="form-label">SIM (Foto/PDF)</label>
@@ -99,8 +102,9 @@
                     <th>Nama</th>
                     <th>No HP</th>
                     <th>Badge</th>
-                    <th>Jenis Worker</th>
-                    <th>Kode</th>
+                    <th>Jenis</th>
+                    <th>Jenis Unit</th>
+                    <th>Kode Unit</th>
                     <th>SIM</th>
                     <th>SIO</th>
                     <th>SILO</th>
@@ -122,7 +126,8 @@
             let noHp = document.getElementById("noHp").value;
             let badge = document.getElementById("badge").value;
             let jenisWorker = document.getElementById("jenisWorker").value;
-            let kode = document.getElementById("kode").value;
+            let jenisUnit = document.getElementById("jenisUnit").value;
+            let kodeUnit = document.getElementById("kodeUnit").value;
 
             let sim = document.getElementById("sim").files[0] ? URL.createObjectURL(document.getElementById("sim").files[0]) : "";
             let sio = document.getElementById("sio").files[0] ? URL.createObjectURL(document.getElementById("sio").files[0]) : "";
@@ -134,7 +139,8 @@
                 <td>${noHp}</td>
                 <td>${badge}</td>
                 <td>${jenisWorker}</td>
-                <td>${kode}</td>
+                <td>${jenisUnit}</td>
+                <td>${kodeUnit}</td>
                 <td><a href="${sim}" target="_blank">Lihat</a></td>
                 <td><a href="${sio}" target="_blank">Lihat</a></td>
                 <td><a href="${silo}" target="_blank">Lihat</a></td>
@@ -161,7 +167,9 @@
                 document.getElementById("noHp").value = columns[1].textContent;
                 document.getElementById("badge").value = columns[2].textContent;
                 document.getElementById("jenisWorker").value = columns[3].textContent;
-                document.getElementById("kode").value = columns[4].textContent;
+                document.getElementById("jenisUnir").value = columns[4].textContent;
+                document.getElementById("KodeUnit").value = columns[5].textContent;
+                document.getElementById("kode").value = columns[6].textContent;
 
                 row.remove();
             }

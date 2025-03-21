@@ -29,12 +29,13 @@
     <div class="sidebar">
         <h4>Selamat Datang Admin</h4>
         <ul class="nav flex-column">
-            <li class="nav-item"><a href="admin_dashboard.html" class="nav-link text-white">Grafik Absensi</a></li>
+            <li class="nav-item"><a href="admin_dashboard.html" class="nav-link text-white">Home</a></li>
             <li class="nav-item"><a href="akun_worker.html" class="nav-link text-white">Tambah Akun</a></li>
             <li class="nav-item"><a href="absensi_worker.html" class="nav-link text-white">Absensi Worker</a></li>
             <li class="nav-item"><a href="riwayat_login.html" class="nav-link text-white">Riwayat Login</a></li>
             <li class="nav-item"><a href="input_data.html" class="nav-link text-white">Input Data</a></li>
             <li class="nav-item"><a href="input_unit.html" class="nav-link text-white">Input Unit</a></li>
+           <li class="nav-item"><a href="absen_mingguan.html" class="nav-link text-white">Rekapan Absensi</a></li>
             <li class="nav-item"><a href="index.html" class="nav-link text-white">Keluar</a></li>
         </ul>
     </div>
@@ -57,12 +58,26 @@
             <div class="mb-3">
                 <label for="workerType" class="form-label">Jenis </label>
                 <select class="form-control" id="workerType">
-                    <option value="Full-time">Driver DT</option>
-                    <option value="Part-time">Opr.EXC</option>
-                    <option value="Freelancer">Opr.MG</option>
-                    <option value="Freelancer">Spotter</option>
-                    <option value="Freelancer">JPK</option>
+                    <option value="Driver DT">Driver DT</option>
+                    <option value="Opr.EXC">Opr.EXC</option>
+                    <option value="Opr.MG">Opr.MG</option>
+                    <option value="Driver WT">Driver WT</option>
+                    <option value="Admin">Admin</option>
+                    <option value="JPK">JPK</option>
                 </select>
+            </div>
+            <div class="mb-3">
+                <label for="workerTypee" class="form-label">Jenis Unit</label>
+                <select class="form-control" id="workerTypee">
+                    <option value="Drump Truck">Drump Truck</option>
+                    <option value="Water Tank">Water Tank</option>
+                    <option value="Motor Grader">Motor Grader</option>
+                    <option value="Excavator">Excavator</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="workerKode" class="form-label">Kode Unit</label>
+                <input type="text" class="form-control" id="workerKode" required>
             </div>
             <button type="submit" class="btn btn-primary">Simpan</button>
         </form>
@@ -75,7 +90,9 @@
                         <th>Nama</th>
                         <th>Badge</th>
                         <th>No HP</th>
-                        <th>Jenis Worker</th>
+                        <th>Jenis</th>
+                        <th>Jenis Unit</th>
+                        <th>Kode Unit</th>
                         <th>Username</th>
                         <th>Password</th>
                         <th>Aksi</th>
@@ -110,6 +127,8 @@
                 let badge = $('#workerBadge').val();
                 let phone = $('#workerPhone').val();
                 let type = $('#workerType').val();
+                let typee = $('#workerTypee').val();
+                let kode = $('#workerKode').val();
                 let username = generateUsername(name);
                 let password = generatePassword();
                 
@@ -120,6 +139,8 @@
                         <td>${badge}</td>
                         <td>${phone}</td>
                         <td>${type}</td>
+                        <td>${typee}</td>
+                        <td>${kode}</td>
                         <td>${username}</td>
                         <td>${password}</td>
                         <td>
@@ -135,6 +156,8 @@
                             <td>${badge}</td>
                             <td>${phone}</td>
                             <td>${type}</td>
+                            <td>${typee}</td>
+                            <td>${kode}</td>
                             <td>${username}</td>
                             <td>${password}</td>
                             <td>
@@ -156,6 +179,8 @@
                 $('#workerBadge').val(cells[1].innerText);
                 $('#workerPhone').val(cells[2].innerText);
                 $('#workerType').val(cells[3].innerText);
+                $('#workerTypee').val(cells[4].innerText);
+                $('#workerKode').val(cells[5].innerText);
             });
 
             $('#workerTableBody').on('click', '.delete-btn', function() {

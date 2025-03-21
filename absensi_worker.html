@@ -30,7 +30,7 @@
         <h4>Selamat Datang Admin</h4>
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a href="admin_dashboard.html" class="nav-link text-white">Grafik Absensi</a>
+                <a href="admin_dashboard.html" class="nav-link text-white">Home</a>
             </li>
             <li class="nav-item">
                 <a href="akun_worker.html" class="nav-link text-white">Tambah Akun</a>
@@ -41,6 +41,7 @@
             <li class="nav-item"><a href="riwayat_login.html" class="nav-link text-white">Riwayat Login</a></li>
             <li class="nav-item"><a href="input_data.html" class="nav-link text-white">Input Data</a></li>
             <li class="nav-item"><a href="input_unit.html" class="nav-link text-white">Input Unit</a></li>
+            <li class="nav-item"><a href="absen_mingguan.html" class="nav-link text-white">Rekapan Absensi</a></li>
             <li class="nav-item"><a href="index.html" class="nav-link text-white">Keluar</a></li>
         </ul>
     </div>
@@ -54,7 +55,10 @@
                     <th>Badge</th>
                     <th>Tanggal</th>
                     <th>Waktu</th>
-                    <th>Alamat Login</th>
+                    <th>Lokasi</th>
+                    <th>Jenis Unit</th>
+                    <th>Kode Unit</th>
+                    <th>Fuelmeter & odometer</th>
                     <th>PTI</th>
                     <th>DCU</th>
                     <th>Kerusakan Unit</th>
@@ -77,7 +81,10 @@
                     badge: "12345",
                     tanggal: "2025-03-20",
                     waktu: "08:00",
-                    alamat: "Padang",
+                   lokasi: "Padang",
+                   jenis: "EXC",
+                   kode:"EXC-001",
+                   fuelmeter_odometer:"10.000 KM",
                     pti: "path/to/pti.jpg",
                     dcu: "path/to/dcu.jpg",
                     kerusakan: "path/to/kerusakan.jpg",
@@ -89,7 +96,10 @@
                     badge: "67890",
                     tanggal: "2025-03-21",
                     waktu: "09:00",
-                    alamat: "Pekanbaru",
+                    lokasi: "Pekanbaru",
+                   jenis: "DT",
+                   kode:"DT-001",
+                   fuelmeter_odometer:"7.000 KM",
                     pti: "path/to/pti.jpg",
                     dcu: "path/to/dcu.jpg",
                     kerusakan: "path/to/kerusakan.jpg",
@@ -106,7 +116,10 @@
                         <td>${data.badge}</td>
                         <td>${data.tanggal}</td>
                         <td>${data.waktu}</td>
-                        <td>${data.alamat}</td>
+                        <td>${data.lokasi}</td>
+                        <td>${data.jenis}</td>
+                        <td>${data.kode}</td>
+                        <td>${data. fuelmeter_odometer}</td>
                         <td><img src="${data.pti}" width="50"></td>
                         <td><img src="${data.dcu}" width="50"></td>
                         <td><img src="${data.kerusakan}" width="50"></td>
@@ -140,12 +153,18 @@
                 let data = sampleData[index];
                 let newName = prompt("Edit Nama:", data.nama);
                 let newBadge = prompt("Edit Badge:", data.badge);
-                let newAddress = prompt("Edit Alamat:", data.alamat);
+                let newAddress = prompt("Edit Lokasi:", data.lokasi);
+                let newJenis = prompt("Edit Jenis:", data.jenis);
+                let newKode = prompt("Edit Kode:", data.kode);
+                let newFuelmeter_odometer = prompt("Edit Kode:", data.fuelmeter_odometer);
                 let newKeterangan = prompt("Edit Keterangan:", data.keterangan);
-                if (newName && newBadge && newAddress && newKeterangan) {
+                if (newName && newBadge && newAddress && newJenis && newKode && newFuelmeter_odometer && newKeterangan) {
                     sampleData[index].nama = newName;
                     sampleData[index].badge = newBadge;
                     sampleData[index].alamat = newAddress;
+                    sampleData[index].jenis = newJenis;
+                    sampleData[index].kode = newKode;
+                    sampleData[index].kode = newFuelmeter_odometer;
                     sampleData[index].keterangan = newKeterangan;
                     renderTable();
                 }
